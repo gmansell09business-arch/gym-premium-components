@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExtractionResult",
+  "type": "object",
+  "required": ["destination", "candidates"],
+  "additionalProperties": false,
+  "properties": {
+    "destination": {
+      "type": "object",
+      "required": ["city", "confidence"],
+      "additionalProperties": false,
+      "properties": {
+        "city": {"type": "string"},
+        "region": {"type": ["string", "null"]},
+        "country": {"type": ["string", "null"]},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "trip_length_days": {"type": ["integer", "null"], "minimum": 1},
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "type", "confidence", "evidence_source"],
+        "additionalProperties": false,
+        "properties": {
+          "name": {"type": "string"},
+          "type": {"enum": ["restaurant", "cafe", "bar", "hotel", "activity", "sight", "area", "shop", "transport", "other"]},
+          "city": {"type": ["string", "null"]},
+          "day": {"type": ["integer", "null"], "minimum": 1},
+          "time_of_day": {"enum": ["morning", "afternoon", "evening", "night", null]},
+          "note": {"type": ["string", "null"], "maxLength": 140},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "evidence_source": {"enum": ["caption", "on_screen_text", "speech"]},
+          "evidence_t_seconds": {"type": ["number", "null"]}
+        }
+      }
+    }
+  }
+}
