@@ -5,6 +5,7 @@ Hand this folder to Claude Code (run it on a Mac with Xcode for the iOS target).
 | File | Purpose |
 |---|---|
 | `CLAUDE.md` | Rules + conventions Claude Code loads each session |
+| `docs/00-BUSINESS-HANDOVER.md` | Single-file summary for business plan, marketing, socials, ASO (paste into another chat) |
 | `docs/01-PRD.md` | Product requirements |
 | `docs/02-ARCHITECTURE.md` | Components, data flow, data model |
 | `docs/03-LEGAL-GUARDRAILS.md` | What's allowed, what's not, and why (not legal advice) |
