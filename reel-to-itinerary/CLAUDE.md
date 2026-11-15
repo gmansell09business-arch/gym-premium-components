@@ -52,3 +52,8 @@ Cloud Claude Code runs on Linux: it **cannot build iOS**. Split the code so most
 ## Connectors available
 - GitHub MCP (repo, PRs, CI), Google Drive (specs/notes), Claude Docs (shared docs).
 - **Kie.ai** for art generation — see `docs/05-ART-PIPELINE.md`. Design-time/brand assets only.
+
+## UI work
+Building any screen or component? Read `docs/06-DESIGN-HANDOVER.md` first. Tokens come only from
+`spec/design-tokens.json` (generate `Theme.swift`; never hard-code colours, sizes or fonts). View, component
+and string-key names must match the handover. Snapshot-test against `design/reference/` before wiring real data.
