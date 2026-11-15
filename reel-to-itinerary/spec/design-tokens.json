@@ -1,60 +1,258 @@
 {
-  "$comment": "Source of truth for visual values. Extracted from the Reel to Itinerary Screens canvas (v5). Claude Design edits this file and the canvas together; Claude Code generates Theme.swift from it. Dark values are still to be designed (null).",
+  "$comment": "Source of truth for visual values. Light values extracted from the Reel to Itinerary Screens canvas. Dark values are PROVISIONAL PLACEHOLDERS (see $darkStatus): Claude Design must replace or confirm them.",
   "version": 1,
   "color": {
-    "bg":            { "light": "#F4F6F8", "dark": null },
-    "surface":       { "light": "#FFFFFF", "dark": null },
-    "line":          { "light": "#E1E6EB", "dark": null },
-    "lineStrong":    { "light": "#C9D2DA", "dark": null },
-    "ink":           { "light": "#0F1E2E", "dark": null },
-    "muted":         { "light": "#5B6B7B", "dark": null },
-    "accent":        { "light": "#0B6E6E", "dark": null },
-    "accentPressed": { "light": "#084F4F", "dark": null },
-    "onAccent":      { "light": "#FFFFFF", "dark": null },
-    "okBg":          { "light": "#DDF3E4", "dark": null },
-    "okFg":          { "light": "#1B6B3A", "dark": null },
-    "warnBg":        { "light": "#FFF1D6", "dark": null },
-    "warnFg":        { "light": "#8A5A00", "dark": null },
-    "warnText":      { "light": "#6B4500", "dark": null },
-    "warnBorder":    { "light": "#E8B64A", "dark": null },
-    "neutralBg":     { "light": "#E8ECF0", "dark": null },
-    "neutralFg":     { "light": "#44525F", "dark": null },
-    "day1":          { "light": "#5B3FD1", "dark": null },
-    "day2":          { "light": "#C2410C", "dark": null },
-    "day3":          { "light": "#0B6E6E", "dark": null },
-    "mapLand":       { "light": "#E9EFF1", "dark": null },
-    "mapWater":      { "light": "#BFD9E6", "dark": null },
-    "mapPark":       { "light": "#D2E6D0", "dark": null },
-    "mapRoad":       { "light": "#FFFFFF", "dark": null }
+    "bg": {
+      "light": "#F4F6F8",
+      "dark": "#0E1620"
+    },
+    "surface": {
+      "light": "#FFFFFF",
+      "dark": "#16222F"
+    },
+    "line": {
+      "light": "#E1E6EB",
+      "dark": "#263544"
+    },
+    "lineStrong": {
+      "light": "#C9D2DA",
+      "dark": "#3A4B5C"
+    },
+    "ink": {
+      "light": "#0F1E2E",
+      "dark": "#F2F5F8"
+    },
+    "muted": {
+      "light": "#5B6B7B",
+      "dark": "#9AA9B8"
+    },
+    "accent": {
+      "light": "#0B6E6E",
+      "dark": "#3FB8B0"
+    },
+    "accentPressed": {
+      "light": "#084F4F",
+      "dark": "#2E9690"
+    },
+    "onAccent": {
+      "light": "#FFFFFF",
+      "dark": "#06201F"
+    },
+    "okBg": {
+      "light": "#DDF3E4",
+      "dark": "#12331F"
+    },
+    "okFg": {
+      "light": "#1B6B3A",
+      "dark": "#7AD39A"
+    },
+    "warnBg": {
+      "light": "#FFF1D6",
+      "dark": "#3A2A0A"
+    },
+    "warnFg": {
+      "light": "#8A5A00",
+      "dark": "#F2C46B"
+    },
+    "warnText": {
+      "light": "#6B4500",
+      "dark": "#F6D9A0"
+    },
+    "warnBorder": {
+      "light": "#E8B64A",
+      "dark": "#B8862B"
+    },
+    "neutralBg": {
+      "light": "#E8ECF0",
+      "dark": "#223140"
+    },
+    "neutralFg": {
+      "light": "#44525F",
+      "dark": "#B7C3CF"
+    },
+    "day1": {
+      "light": "#5B3FD1",
+      "dark": "#8F7BFF"
+    },
+    "day2": {
+      "light": "#C2410C",
+      "dark": "#FF8A5B"
+    },
+    "day3": {
+      "light": "#0B6E6E",
+      "dark": "#3FB8B0"
+    },
+    "mapLand": {
+      "light": "#E9EFF1",
+      "dark": "#1B2833"
+    },
+    "mapWater": {
+      "light": "#BFD9E6",
+      "dark": "#1F3A4D"
+    },
+    "mapPark": {
+      "light": "#D2E6D0",
+      "dark": "#1F3A2C"
+    },
+    "mapRoad": {
+      "light": "#FFFFFF",
+      "dark": "#2B3947"
+    },
+    "paywallAccent": {
+      "light": "#0B6E6E",
+      "dark": "#3FB8B0",
+      "$todo": "placeholder; Claude Design to define paywall tokens if they differ from accent"
+    }
   },
   "font": {
-    "display": { "family": "Space Grotesk", "weights": [500, 700], "license": "OFL" },
-    "body":    { "family": "Inter", "weights": [400, 500, 600], "license": "OFL" }
+    "display": {
+      "family": "Space Grotesk",
+      "weights": [
+        500,
+        700
+      ],
+      "license": "OFL"
+    },
+    "body": {
+      "family": "Inter",
+      "weights": [
+        400,
+        500,
+        600
+      ],
+      "license": "OFL"
+    }
   },
   "type": {
-    "title1":   { "font": "display", "weight": 700, "size": 30, "lineHeight": 1.1,  "textStyle": "largeTitle" },
-    "title2":   { "font": "display", "weight": 700, "size": 28, "lineHeight": 1.1,  "textStyle": "title" },
-    "title3":   { "font": "display", "weight": 700, "size": 20, "lineHeight": 1.15, "textStyle": "title3" },
-    "title4":   { "font": "display", "weight": 700, "size": 17, "lineHeight": 1.15, "textStyle": "headline" },
-    "button":   { "font": "body", "weight": 600, "size": 16, "textStyle": "headline" },
-    "buttonSm": { "font": "body", "weight": 600, "size": 14, "textStyle": "subheadline" },
-    "bodyLg":   { "font": "body", "weight": 600, "size": 16, "textStyle": "body" },
-    "body":     { "font": "body", "weight": 400, "size": 15, "lineHeight": 1.4, "textStyle": "callout" },
-    "bodyStrong": { "font": "body", "weight": 600, "size": 15, "textStyle": "callout" },
-    "caption":  { "font": "body", "weight": 400, "size": 14, "textStyle": "subheadline" },
-    "small":    { "font": "body", "weight": 400, "size": 13, "textStyle": "footnote" },
-    "micro":    { "font": "body", "weight": 400, "size": 12, "textStyle": "caption1" },
-    "eyebrow":  { "font": "body", "weight": 600, "size": 13, "tracking": 0.06, "uppercase": true, "textStyle": "footnote" }
+    "title1": {
+      "font": "display",
+      "weight": 700,
+      "size": 30,
+      "lineHeight": 1.1,
+      "textStyle": "largeTitle"
+    },
+    "title2": {
+      "font": "display",
+      "weight": 700,
+      "size": 28,
+      "lineHeight": 1.1,
+      "textStyle": "title"
+    },
+    "title3": {
+      "font": "display",
+      "weight": 700,
+      "size": 20,
+      "lineHeight": 1.15,
+      "textStyle": "title3"
+    },
+    "title4": {
+      "font": "display",
+      "weight": 700,
+      "size": 17,
+      "lineHeight": 1.15,
+      "textStyle": "headline"
+    },
+    "button": {
+      "font": "body",
+      "weight": 600,
+      "size": 16,
+      "textStyle": "headline"
+    },
+    "buttonSm": {
+      "font": "body",
+      "weight": 600,
+      "size": 14,
+      "textStyle": "subheadline"
+    },
+    "bodyLg": {
+      "font": "body",
+      "weight": 600,
+      "size": 16,
+      "textStyle": "body"
+    },
+    "body": {
+      "font": "body",
+      "weight": 400,
+      "size": 15,
+      "lineHeight": 1.4,
+      "textStyle": "callout"
+    },
+    "bodyStrong": {
+      "font": "body",
+      "weight": 600,
+      "size": 15,
+      "textStyle": "callout"
+    },
+    "caption": {
+      "font": "body",
+      "weight": 400,
+      "size": 14,
+      "textStyle": "subheadline"
+    },
+    "small": {
+      "font": "body",
+      "weight": 400,
+      "size": 13,
+      "textStyle": "footnote"
+    },
+    "micro": {
+      "font": "body",
+      "weight": 400,
+      "size": 12,
+      "textStyle": "caption1"
+    },
+    "eyebrow": {
+      "font": "body",
+      "weight": 600,
+      "size": 13,
+      "tracking": 0.06,
+      "uppercase": true,
+      "textStyle": "footnote"
+    }
   },
-  "space": { "xs": 4, "s": 8, "m": 10, "l": 12, "xl": 16, "xxl": 20, "screenPad": 20 },
-  "radius": { "chip": 999, "control": 12, "button": 14, "card": 16, "sheet": 24 },
+  "space": {
+    "xs": 4,
+    "s": 8,
+    "m": 10,
+    "l": 12,
+    "xl": 16,
+    "xxl": 20,
+    "screenPad": 20
+  },
+  "radius": {
+    "chip": 999,
+    "control": 12,
+    "button": 14,
+    "card": 16,
+    "sheet": 24
+  },
   "size": {
-    "buttonPrimaryH": 52, "buttonSecondaryH": 48, "buttonSmallH": 44,
-    "minTouch": 44, "iconButton": 44, "statusDot": 28, "dayPin": 30, "stopBadge": 28,
-    "sheetGrabber": { "w": 40, "h": 5 }
+    "buttonPrimaryH": 52,
+    "buttonSecondaryH": 48,
+    "buttonSmallH": 44,
+    "minTouch": 44,
+    "iconButton": 44,
+    "statusDot": 28,
+    "dayPin": 30,
+    "stopBadge": 28,
+    "sheetGrabber": {
+      "w": 40,
+      "h": 5
+    }
   },
   "shadow": {
-    "float": { "y": 2, "blur": 8,  "color": "#0F1E2E", "alpha": 0.15 },
-    "sheet": { "y": -4, "blur": 16, "color": "#0F1E2E", "alpha": 0.15 }
-  }
+    "float": {
+      "y": 2,
+      "blur": 8,
+      "color": "#0F1E2E",
+      "alpha": 0.15
+    },
+    "sheet": {
+      "y": -4,
+      "blur": 16,
+      "color": "#0F1E2E",
+      "alpha": 0.15
+    }
+  },
+  "$darkStatus": "provisional: proposed by Claude Code, not designed, contrast not yet checked (text needs 4.5:1). Dark mode is free in v1.0 (PRD v2)."
 }

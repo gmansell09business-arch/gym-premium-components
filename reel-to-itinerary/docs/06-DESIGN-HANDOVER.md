@@ -3,9 +3,8 @@
 Purpose: Claude Design builds the interface once; Claude Code rebuilds it in SwiftUI **1:1** with no
 guessing. Every screen, component, token, string and state has one name that is the same in the canvas and in code.
 
-- **Canvas (v5, 4 screens):** https://claude.ai/artifact/QgrULd5i1DGQD69NZ2EaKN (private to the owner).
-  Claude Code can read the artboard sources with the Artifact tool: `action: "read"`, that `url`,
-  `path: "project/Main.dc.html"` (also `Review`, `Trip`, `Place`, and `project/canvas.json`).
+- **Canvas (current, 40 artboards):** https://claude.ai/artifact/M45SQBUpsEHoCUdMcGnieP (private to the owner). Read artboard sources with the Artifact tool: `action: "read"`, that `url`, `path: "project/<Artboard>.dc.html"` or `project/canvas.json`.
+  An earlier 4-screen canvas (https://claude.ai/artifact/QgrULd5i1DGQD69NZ2EaKN) is superseded. **Sections 1 to 11 below were written for those first four screens (Main, Review, Trip, Place); section 12 maps PRD v2 to the 40-artboard canvas.** Artboard contents beyond the first four have not been reviewed against this document.
 - **Tokens:** `spec/design-tokens.json` is the only source of colours, type, spacing, radii, sizes, shadows.
 - **Rules that apply to all UI:** `CLAUDE.md` (attribution on every stop, verified-only, no media stored, on-device OCR).
 
@@ -194,7 +193,34 @@ Fixtures for previews live in `spec/fixtures/` (synthetic, never real captions).
 4. Wire to real data only after the screens match the references.
 
 ## 11. Open items
-- Dark mode palette (tokens `dark` are null).
+- Dark mode palette: provisional placeholder values are in `spec/design-tokens.json` (`$darkStatus`); Claude Design must confirm or replace them and check 4.5:1 contrast.
 - Real map styling: the canvas map is a stand-in, so match Apple Maps default with the day colours for pins and route.
 - App name, icon and wordmark (Kie.ai art pipeline: see `docs/05-ART-PIPELINE.md`).
 - Export reference PNGs at 3x into `design/reference/` after each approved revision.
+
+## 12. PRD v2 design tasks (added 2026-11-15)
+Source: `docs/01-PRD.md` v2. Status "exists" means an artboard with that title is in the 40-artboard canvas; it has **not** been checked against the PRD.
+
+| PRD item | Phase | Canvas artboard(s) | Status / task for Claude Design |
+|---|---|---|---|
+| Import preview (post summary, creator handle + link back, platform; place checklist with select all/none; Verified / Needs check label; source type + quote or timestamp; map with numbered pins; "Add N places to trip" with day/section picker; Undo toast; thumbs up/down with optional reason; ambiguous picker; unverified listed separately and off by default) | MVP | `2 Review places`, `25 Why is this here`, `16 What Verified means`, import state boards | **Rework `Review` into the Import preview.** Add the missing parts: map pins, select all/none, day picker, Undo toast, thumbs feedback sheet, unverified section. |
+| Source-type label (caption / on-screen / voiceover / pasted comment) and quote/timestamp on every stop | MVP | `25 Why is this here` | Define a `SourceTypeLabel` component used on Import preview, Place card and Day plan. |
+| Sample reel (first-run) | MVP | none seen | **Design:** first-run entry ("Try a sample reel"), result screen, clear "sample" marking. Content must be synthetic. |
+| Instagram capture-first variant of the import card | MVP | `1 Import card`, `9 Capture helper` | Variant of the import card for Instagram that leads with the capture helper (paste, screenshots, recording). |
+| Onboarding: max three questions (trip type, who with, budget feel), one notification prompt with a reason, no location "Always" | v1.0 | `Onboarding 1-4`, `18-21 Taste` | **Check against PRD:** the canvas has four Taste screens and four onboarding screens; the PRD allows three questions. Consolidate. Add the single notification prompt. |
+| Paywall (natural limit: fourth reel in a month, offline, export; after the first plan; at most once per session; annual plan with trial; UK price in pounds) | v1.0 | none seen | **Design:** paywall sheet, free-limit counter ("2 of 3 reels this month"), Pro locks on gated features, restore purchases, price display in the user's currency. |
+| Dark mode (free) | v1.0 | none (light only) | **Design dark variants of every screen** using the provisional dark tokens; confirm or replace; check contrast. |
+| Trip tabs: Itinerary, Map, Budget, Notes | v1.0 | `3 Trip map`, `6 Day plan`, `22 Budget` | Tabbed trip container; Notes tab is missing. |
+| Fast read-only day view (two taps or fewer) | v1.0 | `6 Day plan` | Add a read-only variant that opens without edit mode. |
+| Reality checks ("this day is not doable", leg over 45 min, closed day) | MVP | `3 Trip map` (warning banner) | Add states for each check type and a "leg too long" marker on `TravelConnector`. |
+| Budget per meal and trip total; meals "suggested by us" | MVP | `22 Budget`, `7 Meals per route` | Confirm labels: every price shows "estimate" and its source; suggested meals visibly separate from creator picks. |
+| Google Maps export link (Pro) | v1.0 | `14 Add to day`, `15 Share sheet` | Add an export sheet with the Pro lock and a "split long days" note. |
+| Offline read-only trips (Pro) and route optimisation | v1.1 (moved) | none | Not for the eight-week build; design later. |
+| Stay base area, Excursions | not in PRD v2 | `23 Stay`, `24 Excursions` | **Out of PRD scope:** decide whether these are Later or cut. |
+
+### Reference: Wanderlog onboarding (observed in the owner's screenshots; reference for flow only, do not copy visuals)
+- Destination step: heading "Where are you traveling?", search field with placeholder "e.g. Paris, Tokyo, Hawaii", a list of suggested destinations with flag emoji (New York City, London, Paris, Tokyo, Oahu, Scotland, Iceland, Bali), a back button and a segmented progress bar at the top, a Continue button pinned to the bottom that is pale (disabled) until a destination is chosen.
+- After choosing: a large photo card with the destination name, a close icon, an "Add more" link, Continue becomes active.
+- Dates step: heading "Select dates", a scrolling month calendar, today highlighted, range selection with the status line "Nov 18 – Select end date" then "Nov 18 – Dec 1", Continue and Skip.
+- Look: dark red-to-orange gradient background, white type, coral primary button.
+- **Implications for us:** our flow is reel-first, so destination and dates are usually inferred from the reel; ask for them only when the reel does not imply them and always allow Skip. Use their pattern ideas (progress bar, pinned Continue, Skip, destination chips) but keep our own palette, type and layout. Their onboarding is destination-first and, per the owner's findings, shows a paywall before the user has built anything; ours must show the first plan first.

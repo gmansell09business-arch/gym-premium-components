@@ -1,6 +1,6 @@
 # Reel→Itinerary: business handover (paste this into a new chat)
 
-Date: 2026-11-15. Status: product designed, build not started. Purpose of this file: give a marketing / ASO / business-plan chat everything decided so far, with facts separated from hypotheses.
+Date: 2026-11-15 (updated after PRD v2). Status: product designed, build not started. Source of truth for scope and phases: `docs/01-PRD.md` (v2). Purpose of this file: give a marketing / ASO / business-plan chat everything decided so far, with facts separated from hypotheses.
 
 **How to read the labels.** `[Decided]` = chosen by us. `[Fact]` = from a screenshot or source we saw. `[Hypothesis]` = our guess, needs validating. `[Unverified]` = could not be confirmed.
 
@@ -26,7 +26,7 @@ An iPhone app. The user shares a travel reel/post (TikTok, Instagram, YouTube) t
 ## 4. Why this approach (the legal position in plain English)
 Not legal advice; get a tech/IP lawyer before public launch. `[Unverified]` for any specific jurisdiction.
 - The share sheet only gives a **link**, not the video. `[Fact]` (to be re-tested on device)
-- **Low-risk route we chose:** official oEmbed (TikTok reliable; Instagram needs Meta app review, business verification and had field changes in 2025), text the user pastes, and screenshots/recordings the user supplies, read on-device. `[Decided]`
+- **Low-risk route we chose:** Instagram is supported from day one through user-supplied capture (pasted caption, screenshots, screen recording, read on-device). Meta oEmbed for Instagram is a later, display-oriented addition, used only if Meta App Review is approved and legal signs off on reading captions with it (Meta documents oEmbed Read as a way to embed public posts; using it to extract places is a different purpose). TikTok and YouTube use the official oEmbed / API route. `[Decided]`
 - **We will not:** download videos server-side, log in to platforms, crawl profiles, use scraping vendors, store creator media or republish captions. `[Decided]`
 - US case law is more favourable to scraping public data than commonly assumed (Meta v. Bright Data, 2024) but it is one district-court ruling, not settled, and does not cover UK/EU rules. `[Fact, summary]`
 - Platform dependency (API/terms changes) is a bigger ongoing risk than lawsuits; the user-supplied recording path protects against it. `[Hypothesis]`
@@ -42,6 +42,11 @@ Not legal advice; get a tech/IP lawyer before public launch. `[Unverified]` for 
 - Homepage positioning: "One app for all your travel planning needs".
 - Ads run on Instagram, YouTube and Facebook in creator-style (hand-held phone, "I just found this" hooks), several started late Oct 2026.
 - We could not open wanderlog.com from our sandbox; how their import works (server fetch vs oEmbed) is unknown. `[Unverified]`
+- **Findings from the owner's Wanderlog recording and PRD v2** `[Fact, per the owner; not verified by me]`:
+  - Import accepts links, **screenshots**, pasted text, files, and lists from Maps or chatbots, so screenshot import is not an edge.
+  - Import results show **timestamped quotes** from the source and **credit the creator**.
+  - Onboarding is destination- and dates-first (we saw: "Where are you traveling?" with suggested cities, a selected-destination photo card with "Add more", then "Select dates" with a range calendar and Skip), and a **paywall appears in onboarding** before the user has built anything; our plan shows the first plan before any paywall.
+  - Dark mode is Pro-only; offline is Pro.
 
 **Smaller apps already doing share-sheet import** (self-reported store listings; search results Nov 2026): ReelTravel, Meily, Rhyme (formerly Roamy), Triply, PlanPin, Itinify, Wingman City Guide, TripTok, Somedays, Routewise. Others named from memory, not verified: Mindtrip, Layla, TripIt, Tripadvisor, Google Maps lists. `[Unverified]`
 
@@ -55,13 +60,13 @@ Not legal advice; get a tech/IP lawyer before public launch. `[Unverified]` for 
 5. **Steps/walking goal mode** and walk-aware routing; HealthKit read on-device only. `[Decided]`
 6. **Meals for each route**, with "suggested by us" visibly separate from the creator's picks. `[Decided]`
 7. **Creator-permissioned trips:** creators submit or approve their own itinerary via a link in bio ("Open this trip in the app"). Licensed content, viral loop, revenue-share potential. `[Hypothesis]`
-8. **On-device privacy as a brand claim:** "your saved reels never leave your phone". `[Decided]` (true only while we keep processing on-device)
+8. **Privacy claim we can prove:** "Your videos never leave your phone. Only the text we read from them is sent, to find the places." We do not say "your saved reels never leave your phone", because extracted text goes to our backend and an LLM provider. No ad or social-login SDKs; say "no ad tracking" only if the build has none. `[Decided]`
 9. **Saved-place nudges** near you, **Plan B** for rain, **menu translation** (Japan), **group voting**. `[Hypothesis]`
 10. **Shareable trip posters** (art via Kie.ai) so every trip markets the app. `[Hypothesis]`
 11. **Review layer:** show Google/Tripadvisor ratings side by side, unmodified and attributed, plus first-party "saved by / would go again" signals; no blended score until terms are checked. `[Decided]`
 
 ## 7. Product scope and design status
-**MVP:** share extension; oEmbed + paste caption + user-supplied media; on-device OCR/speech; verification; review inbox; trip timeline + map; day clustering; attribution; delete-my-data. `[Decided]`
+**MVP (eight-week build):** share extension; oEmbed (TikTok/YouTube) + paste + user-supplied media; on-device OCR/speech; verification; Import preview (checklist, Verified label, source type and quote, map, undo, feedback); sample reel; trip with auto-built days, travel times, reality checks, budget per meal; evidence per stop; attribution; delete-my-data. **v1.0 items in the same build:** onboarding (max three questions), trip tabs, read-only day view, dark mode, paywall, Google Maps export. **Moved to v1.1:** route optimisation, true offline, tripmate sharing, booking prompts, file/Maps/chatbot import. See `docs/01-PRD.md` and `docs/04-BUILD-PLAN.md`. `[Decided]`
 **Out of scope (legal):** profile/account import, background crawling, downloading platform media, logging in to platforms, storing creator media.
 
 **Design canvas (Claude Design), 40 artboards, private link:** https://claude.ai/artifact/M45SQBUpsEHoCUdMcGnieP (screens listed by title; contents not individually reviewed here).
@@ -74,10 +79,12 @@ Eight-week plan (M0 scaffold → M6 compliance and TestFlight): share-extension 
 Stack: SwiftUI, SwiftData, App Group, MapKit, Vision, Speech; small TypeScript backend as an LLM proxy (Claude API with structured output); Kie.ai for art; project generated with XcodeGen. Claude Code builds the logic on Linux and the app target on a Mac.
 Human-only tasks: Apple Developer account and App Group IDs, Meta app review for oEmbed, lawyer review, API keys on the backend, App Store listing and privacy labels.
 
-## 9. Monetisation (starting hypotheses)
-- Free tier: about 3 reels per month; Pro: unlimited reels, multiple trips, offline maps, export. `[Hypothesis]`
-- Affiliate booking links only with clear disclosure; creator revenue share later. `[Hypothesis]`
-- Benchmark: Wanderlog earns roughly $1 per download over 30 days; room for a stronger paid tier if the product is clearly better. `[Hypothesis]`
+## 9. Monetisation (from PRD v2) `[Hypothesis]` unless stated
+- **Free:** 3 reels per month, one trip. **Pro:** unlimited reels, multi-trip, offline, Google Maps export, route optimisation, budget tools. Dark mode is free (Wanderlog gates it as Pro, per the owner's findings).
+- **Prices to test:** about $5.99 per month or $34.99 per year in the US; a pound price in the UK, not yet set. Wanderlog UK shows £30.99 per year (£2.57 per month) with a 7-day trial (per the owner's PRD v2; not verified by me).
+- **Paywall rules:** shown only at a natural limit (the fourth reel in a month, offline, export), after the user has seen their first plan; at most once per session; annual plan with a trial.
+- Affiliate booking links only with clear disclosure (v1.1); creator revenue share later.
+- Benchmark: Wanderlog earns roughly $1 per download over 30 days (Sensor Tower estimate), so a calmer paywall and a clearly better product leave room for a stronger paid tier.
 
 ## 10. Success metrics (from the PRD) `[Hypothesis]`
 - At least 70% of shared reels yield 1+ verified place; median share-to-reviewed-list under 60 seconds.
@@ -87,8 +94,8 @@ Human-only tasks: Apple Developer account and App Group IDs, Meta app review for
 
 ## 11. Inputs for the marketing, social and ASO chat
 **Positioning candidates `[Hypothesis]`:** "Turn any travel reel into a real plan", "Every place from the reel, checked and mapped", "Your saved reels, planned".
-**Proof points we can honestly claim (once built):** verified-on-the-map places; evidence shown per stop; on-device reading; credit and link back to the creator; budget, steps and meals per route.
-**Do not claim:** that it "automatically" reads any reel with one tap (it needs the user's recording for on-screen text and voice); partnership with or endorsement by Instagram, TikTok or YouTube; unmodified third-party review data we are not licensed to show.
+**Proof points we can honestly claim (once built):** verified-on-the-map places with a source label and quote or timestamp; reality checks; videos read on your phone with only text sent; credit and link back to the creator; budget per meal and route legs flagged when too long.
+**Do not claim:** "your saved reels never leave your phone"; that it "automatically" reads any reel with one tap (on-screen text and voice need the user's recording); partnership with or endorsement by Instagram, TikTok or YouTube; unmodified third-party review data we are not licensed to show; "no ad tracking" unless the build has none.
 **Social content ideas `[Hypothesis]`:**
 - 15-second screen-recording demos: share a reel, watch the checklist fill, get a mapped day. Wanderlog's ads use hand-held-phone creator style, so differentiate with the "evidence per stop" and "budget and steps" moments.
 - "I fed 5 viral reels into an app" creator-style comparisons; before/after of a messy saved folder vs a plan.
@@ -100,7 +107,7 @@ Human-only tasks: Apple Developer account and App Group IDs, Meta app review for
 ## 12. Open decisions for the business plan
 1. App name, wordmark and icon (use Kie.ai art pipeline for options).
 2. Launch markets and company jurisdiction (drives privacy law and the lawyer brief); Wanderlog's top markets are US, UK, Australia.
-3. Which platform to lead with: TikTok (reliable oEmbed), YouTube (official API), Instagram (needs Meta approval).
+3. Platform order: TikTok and YouTube via official routes, Instagram from day one through user-supplied capture; Meta oEmbed for Instagram later and only with legal sign-off.
 4. Free vs paid split and price points.
 5. Whether to pursue creator partnerships early.
 6. Budget and team: who builds, who runs the lawyer review and Meta app review, who owns marketing.
