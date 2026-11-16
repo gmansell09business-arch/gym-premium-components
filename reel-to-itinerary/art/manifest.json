@@ -1,0 +1,37 @@
+{
+  "$comment": "Art kit manifest. 'candidate' = preview sheet only (1200x896, too small for production). Replace with full-resolution originals from OpenArt and record prompt, model, seed, date in art/prompts/. Statuses: candidate | approved | regenerate | needs-vector.",
+  "styleAnchor": "flat editorial travel illustration, soft geometric shapes, limited palette of deep teal #0B6E6E, ink navy #0F1E2E, violet #5B3FD1, burnt orange #C2410C and pale grey paper #F4F6F8, subtle paper grain, clean vector look, generous negative space, no text, no letters, no logos, no faces",
+  "assets": [
+    { "id": "cover-lisbon",    "use": "trip cover, poster, App Store", "status": "candidate", "source": "candidates/c2-destination-covers-sheet.webp (row 1, col 1)", "needs": ["full-res original", "wide 16:9 crop-safe variant"] },
+    { "id": "cover-tokyo",     "use": "trip cover, poster, App Store", "status": "candidate", "source": "candidates/c2-destination-covers-sheet.webp (row 1, col 2)", "needs": ["full-res original", "wide variant"] },
+    { "id": "cover-paris",     "use": "trip cover, poster, App Store", "status": "candidate", "source": "candidates/c2-destination-covers-sheet.webp (row 1, col 3)", "needs": ["full-res original", "wide variant"] },
+    { "id": "cover-london",    "use": "trip cover, poster, App Store", "status": "candidate", "source": "candidates/c2-destination-covers-sheet.webp (row 1, col 4)", "needs": ["full-res original", "wide variant"] },
+    { "id": "cover-rome",      "use": "trip cover, poster, App Store", "status": "candidate", "source": "candidates/c2-destination-covers-sheet.webp (row 1, col 5)", "needs": ["full-res original", "wide variant"] },
+    { "id": "cover-barcelona", "use": "trip cover, poster, App Store", "status": "candidate", "source": "candidates/c2-destination-covers-sheet.webp (row 2, col 1)", "needs": ["full-res original", "wide variant"] },
+    { "id": "cover-kyoto",     "use": "trip cover, poster, App Store", "status": "candidate", "source": "candidates/c2-destination-covers-sheet.webp (row 2, col 2)", "needs": ["full-res original", "wide variant"] },
+    { "id": "cover-newyork",   "use": "trip cover, poster, App Store", "status": "candidate", "source": "candidates/c2-destination-covers-sheet.webp (row 2, col 3)", "needs": ["full-res original", "wide variant"] },
+    { "id": "cover-bali",      "use": "trip cover, poster, App Store", "status": "candidate", "source": "candidates/c2-destination-covers-sheet.webp (row 2, col 4)", "needs": ["full-res original", "wide variant"] },
+    { "id": "cover-iceland",   "use": "trip cover, poster, App Store", "status": "candidate", "source": "candidates/c2-destination-covers-sheet.webp (row 2, col 5)", "needs": ["full-res original", "wide variant"] },
+    { "id": "onb-share",       "use": "onboarding / welcome", "status": "candidate", "source": "candidates/c3-onboarding-sheet.webp (1)", "needs": ["crop without the '1)' label", "full-res"] },
+    { "id": "onb-verify",      "use": "onboarding / how it works", "status": "candidate", "source": "candidates/c3-onboarding-sheet.webp (2)", "needs": ["crop without label", "full-res"] },
+    { "id": "onb-route",       "use": "onboarding / how it works", "status": "candidate", "source": "candidates/c3-onboarding-sheet.webp (3)", "needs": ["crop without label", "full-res"] },
+    { "id": "onb-onthego",     "use": "onboarding / on the go", "status": "regenerate", "source": "candidates/c3-onboarding-sheet.webp (4)", "needs": ["scene is disconnected; regenerate"] },
+    { "id": "empty-trips",     "use": "empty state: no trips", "status": "regenerate", "source": "candidates/c4-empty-error-sheet.webp (top left)", "needs": ["suitcase reads as a laptop; regenerate"] },
+    { "id": "empty-noplaces",  "use": "empty state: no places found", "status": "candidate", "source": "candidates/c4-empty-error-sheet.webp (top right)", "needs": ["full-res", "dark variant"] },
+    { "id": "state-offline",   "use": "offline state", "status": "candidate", "source": "candidates/c4-empty-error-sheet.webp (bottom left)", "needs": ["clearer idea (plane over cloud is ambiguous)", "dark variant"] },
+    { "id": "state-error",     "use": "error / try again", "status": "candidate", "source": "candidates/c4-empty-error-sheet.webp (bottom right)", "needs": ["full-res", "dark variant"] },
+    { "id": "paywall-hero",    "use": "paywall header", "status": "candidate", "source": "candidates/c5-paywall.webp", "needs": ["clean export without card shadow", "match flat style or accept as a 'shaded hero' tier"] },
+    { "id": "icon-seal",       "use": "app icon shortlist 1 and Verified motif", "status": "needs-vector", "source": "candidates/c7-app-icon-concepts-sheet.webp (top right)", "needs": ["human vector redraw", "1024x1024 full-bleed square, no rounded corners baked in", "test at 60, 40, 29 px", "trademark search"] },
+    { "id": "icon-foldedpin",  "use": "app icon shortlist 2", "status": "needs-vector", "source": "candidates/c7-app-icon-concepts-sheet.webp (bottom left)", "needs": ["human vector redraw", "full-bleed square", "test small sizes", "trademark search"] },
+    { "id": "icon-pinroute",   "use": "app icon backup", "status": "needs-vector", "source": "candidates/c7-app-icon-concepts-sheet.webp (top left)", "needs": ["route squiggle reads oddly", "redraw"] },
+    { "id": "icon-compass",    "use": "rejected", "status": "rejected", "source": "candidates/c7-app-icon-concepts-sheet.webp (bottom right)", "needs": ["generic compass cliché, busy at small sizes"] }
+  ],
+  "toGenerate": [
+    "regional fallback covers: city, coast, mountains, island, desert, countryside, snow",
+    "more destination covers (target 30 to 50 popular destinations)",
+    "wide 16:9 header versions of every cover",
+    "dark-mode variants of empty and error illustrations",
+    "share-back poster backgrounds in the three day colours",
+    "App Store screenshot backgrounds"
+  ]
+}
